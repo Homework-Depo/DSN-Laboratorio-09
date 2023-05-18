@@ -19,7 +19,7 @@ CREATE TABLE "Image" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "S3ObjectKey" TEXT NOT NULL,
     "imgUrl" TEXT NOT NULL,
-    "productId" INTEGER NOT NULL,
+    "productId" INTEGER,
 
     CONSTRAINT "Image_pkey" PRIMARY KEY ("id")
 );
@@ -37,4 +37,4 @@ CREATE UNIQUE INDEX "Image_imgUrl_key" ON "Image"("imgUrl");
 CREATE UNIQUE INDEX "Image_productId_key" ON "Image"("productId");
 
 -- AddForeignKey
-ALTER TABLE "Image" ADD CONSTRAINT "Image_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Image" ADD CONSTRAINT "Image_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE SET NULL ON UPDATE CASCADE;
