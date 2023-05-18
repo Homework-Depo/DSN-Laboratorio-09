@@ -67,6 +67,22 @@ export const updateProduct = async (req: Request, res: Response) => {
   }
 };
 
+export const deleteProduct = async (req: Request, res: Response) => {
+  const { params } = req;
+
+  try {
+    const product = await prisma.product.delete({
+      where: {
+        id: Number(params.id)
+      }
+    });
+
+    res.json(product);
+  } catch (error: any) {
+    res.json(error.message);
+  }
+};
+
 export const findManyProducts = async (req: Request, res: Response) => {
   try {
     const products = await prisma.product.findMany({
