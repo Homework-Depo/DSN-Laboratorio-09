@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
-    "target": "ESNext",
+    "module": "Node16",
+    "moduleResolution": "node16",
+    "target": "ES2022",
     "watch": true,
     "strict": true,
     "lib": [
       "DOM",
-      "ESNext"
+      "ES2022"
     ],
     "outDir": "./dist",
     "rootDir": "./src"

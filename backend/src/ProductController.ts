@@ -1,26 +1,20 @@
 import { Request, Response } from 'express';
 import prisma from './config/database';
+import { Product } from '@prisma/client';
 
 export const createProduct = async (req: Request, res: Response) => {
   const { body } = req
 
   try {
-    const product = await prisma.product.create({
+    const product: Product = await prisma.product.create({
       data: {
         name: body.name,
         brand: body.brand,
         model: body.model,
         price: body.price,
         stock: body.stock,
-        image: {
-          create: {
-            S3ObjectKey: body.image.S3ObjectKey,
-            imgUrl: body.image.imgUrl
-          }
-        }
-      },
-      include: {
-        image: true
+        imgS3Key: body.imgS3Key,
+        imgS3Url: body.imgS3Url
       }
     });
 
@@ -28,21 +22,14 @@ export const createProduct = async (req: Request, res: Response) => {
   } catch (error: any) {
     res.json(error.message);
   }
-}
+};
 
 export const updateProduct = async (req: Request, res: Response) => {
   const { params } = req;
   const { body } = req;
 
   try {
-    const image = await prisma.image.create({
-      data: {
-        S3ObjectKey: body.image.S3ObjectKey,
-        imgUrl: body.image.imgUrl
-      }
-    })
-
-    const product = await prisma.product.update({
+    const product: Product = await prisma.product.update({
       where: { id: Number(params.id) },
       data: {
         name: body.name,
@@ -50,16 +37,10 @@ export const updateProduct = async (req: Request, res: Response) => {
         model: body.model,
         price: body.price,
         stock: body.stock,
-        image: {
-          connect: {
-            id: image.id
-          }
-        }
-      },
-      include: {
-        image: true
+        imgS3Key: body.imgS3Key,
+        imgS3Url: body.imgS3Url
       }
-    })
+    });
 
     res.json(product);
   } catch (error: any) {
@@ -71,7 +52,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
   const { params } = req;
 
   try {
-    const product = await prisma.product.delete({
+    const product: Product = await prisma.product.delete({
       where: {
         id: Number(params.id)
       }
@@ -85,12 +66,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
 
 export const findManyProducts = async (req: Request, res: Response) => {
   try {
-    const products = await prisma.product.findMany({
-      include: {
-        image: true
-      }
-    });
-
+    const products: Product[] = await prisma.product.findMany({});
     res.json(products);
   } catch (error: any) {
     res.json(error.message);
@@ -101,12 +77,9 @@ export const findFirstProduct = async (req: Request, res: Response) => {
   const { params } = req;
 
   try {
-    const product = await prisma.product.findFirst({
+    const product: Product | null = await prisma.product.findFirst({
       where: {
         id: Number(params.id)
-      },
-      include: {
-        image: true
       }
     });
 
