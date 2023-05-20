@@ -3,7 +3,9 @@ import prisma from './config/database';
 import { Product } from '@prisma/client';
 
 export const createProduct = async (req: Request, res: Response) => {
-  const { body } = req
+  console.log(req.body)
+  res.end()
+  /* const { body } = req
 
   try {
     const product: Product = await prisma.product.create({
@@ -21,7 +23,7 @@ export const createProduct = async (req: Request, res: Response) => {
     res.json(product);
   } catch (error: any) {
     res.json(error.message);
-  }
+  } */
 };
 
 export const updateProduct = async (req: Request, res: Response) => {

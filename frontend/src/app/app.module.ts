@@ -10,6 +10,7 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { ProductService } from './service/product.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 /* Material Imports */
 import { MatTableModule } from '@angular/material/table';
@@ -37,7 +38,8 @@ import { MatInputModule} from '@angular/material/input';
     HttpClientModule,
     MatToolbarModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

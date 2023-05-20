@@ -11,4 +11,8 @@ export class ProductService {
   getProducts() {
     return this.http.get('http://localhost:3000/api/product');
   }
+
+  createProduct(product: any) {
+    this.http.post('http://localhost:3000/api/product', product).subscribe();
+  }
 }

@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import { S3 } from '@aws-sdk/client-s3';
 import dotenv from 'dotenv';
 
@@ -12,5 +13,5 @@ const s3 = new S3({
 });
 
 export const uploadFile = async (req: Request, res: Response) => {
-
+  
 };

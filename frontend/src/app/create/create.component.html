@@ -1,24 +1,27 @@
-<h1>{{ title }}</h1>
-<mat-form-field>
-  <mat-label>Nombre</mat-label>
-  <input matInput>
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Marca</mat-label>
-  <input matInput>
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Modelo</mat-label>
-  <input matInput>
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Precio</mat-label>
-  <input matInput>
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Stock</mat-label>
-  <input matInput>
-</mat-form-field>
-<button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-<input hidden #fileInput type="file">
-<span class="file-name"></span>
+<form [formGroup]="productForm" (ngSubmit)="submitProductForm()" enctype="multipart/form-data">
+  <h1>{{ title }}</h1>
+  <mat-form-field>
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Marca</mat-label>
+    <input matInput formControlName="brand">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Modelo</mat-label>
+    <input matInput formControlName="model">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Precio</mat-label>
+    <input matInput formControlName="price">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Stock</mat-label>
+    <input matInput formControlName="stock">
+  </mat-form-field>
+  <button type="button" mat-raised-button (click)="fileInput.click()">Selecciona una imagen</button>
+  <input hidden #fileInput type="file" formControlName="imgFile">
+  <span class="file-name"></span>
+  <button mat-flat-button color="primary" type="submit">Enviar</button>
+</form>
