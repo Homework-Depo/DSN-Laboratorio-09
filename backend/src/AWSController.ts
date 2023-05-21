@@ -1,4 +1,3 @@
-import { Request, Response } from 'express';
 import { S3, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
 import dotenv from 'dotenv';
 
