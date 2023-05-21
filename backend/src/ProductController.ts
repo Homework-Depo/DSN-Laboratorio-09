@@ -77,7 +77,11 @@ export const deleteProduct = async (req: Request, res: Response) => {
 
 export const findManyProducts = async (req: Request, res: Response) => {
   try {
-    const products: Product[] = await prisma.product.findMany({});
+    const products: Product[] = await prisma.product.findMany({
+      orderBy: {
+        id: 'asc'
+      }
+    });
     res.json(products);
   } catch (error: any) {
     res.json(error.message);
