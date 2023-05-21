@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListComponent } from './list/list.component';
-import { DetailComponent } from './detail/detail.component';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { ProductService } from './service/product.service';
@@ -24,7 +23,6 @@ import { MatInputModule} from '@angular/material/input';
   declarations: [
     AppComponent,
     ListComponent,
-    DetailComponent,
     CreateComponent,
     EditComponent
   ],

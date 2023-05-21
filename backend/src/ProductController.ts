@@ -1,29 +1,32 @@
 import { Request, Response } from 'express';
 import prisma from './config/database';
 import { Product } from '@prisma/client';
+import { uploadFile, deleteFile } from './AWSController';
 
 export const createProduct = async (req: Request, res: Response) => {
-  console.log(req.body)
-  res.end()
-  /* const { body } = req
+  const { body, file } = req;
+  const buffer = file?.buffer
+  const originalName: string = file?.originalname || ''
+  const mimeType: string = req.file?.mimetype || ''
 
   try {
+    await uploadFile(buffer, originalName, mimeType);
     const product: Product = await prisma.product.create({
       data: {
         name: body.name,
         brand: body.brand,
         model: body.model,
-        price: body.price,
-        stock: body.stock,
-        imgS3Key: body.imgS3Key,
-        imgS3Url: body.imgS3Url
+        price: Number(body.price),
+        stock: Number(body.stock),
+        imgS3Key: `images/${originalName}`,
+        imgS3Url: `https://jalab09.s3.amazonaws.com/images/${originalName}`
       }
     });
 
     res.json(product);
   } catch (error: any) {
     res.json(error.message);
-  } */
+  }
 };
 
 export const updateProduct = async (req: Request, res: Response) => {
@@ -52,8 +55,10 @@ export const updateProduct = async (req: Request, res: Response) => {
 
 export const deleteProduct = async (req: Request, res: Response) => {
   const { params } = req;
+  const { body } = req
 
   try {
+    const deleteResult = await deleteFile(body.imgS3Key);
     const product: Product = await prisma.product.delete({
       where: {
         id: Number(params.id)

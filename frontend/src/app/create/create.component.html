@@ -21,7 +21,7 @@
     <input matInput formControlName="stock">
   </mat-form-field>
   <button type="button" mat-raised-button (click)="fileInput.click()">Selecciona una imagen</button>
-  <input hidden #fileInput type="file" formControlName="imgFile">
-  <span class="file-name"></span>
+  <input hidden #fileInput type="file" (change)="onFileSelect($event)">
+  <span class="file-name">{{ productForm.value.imgFile?.name }}</span>
   <button mat-flat-button color="primary" type="submit">Enviar</button>
 </form>
