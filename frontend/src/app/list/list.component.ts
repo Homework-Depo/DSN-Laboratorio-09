@@ -9,14 +9,16 @@ import { Router } from '@angular/router';
 })
 export class ListComponent implements OnInit {
 
-  products: any
+  products: any;
   displayedColumns: string[] = ['id', 'name', 'brand', 'model', 'price', 'stock', 'img', 'actions'];
 
-  constructor(private productService: ProductService, private router: Router) {
-  }
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit() {
-    this.products = this.productService.getProducts();
+    this.productService.products$.subscribe(products => {
+      this.products = products;
+    });
+    this.productService.getProducts();
   }
 
   sendToDetails(id: number) {

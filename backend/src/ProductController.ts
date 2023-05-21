@@ -7,7 +7,7 @@ export const createProduct = async (req: Request, res: Response) => {
   const { body, file } = req;
   const buffer = file?.buffer
   const originalName: string = file?.originalname || ''
-  const mimeType: string = req.file?.mimetype || ''
+  const mimeType: string = file?.mimetype || ''
 
   try {
     await uploadFile(buffer, originalName, mimeType);
@@ -30,20 +30,24 @@ export const createProduct = async (req: Request, res: Response) => {
 };
 
 export const updateProduct = async (req: Request, res: Response) => {
-  const { params } = req;
-  const { body } = req;
+  const { params, body, file } = req;
+  const buffer = file?.buffer
+  const originalName: string = file?.originalname || ''
+  const mimeType: string = file?.mimetype || ''
 
   try {
+    const deleteResult = await deleteFile(body.imgS3Key);
+    const uploadResult = await uploadFile(buffer, originalName, mimeType);
     const product: Product = await prisma.product.update({
       where: { id: Number(params.id) },
       data: {
         name: body.name,
         brand: body.brand,
         model: body.model,
-        price: body.price,
-        stock: body.stock,
-        imgS3Key: body.imgS3Key,
-        imgS3Url: body.imgS3Url
+        price: Number(body.price),
+        stock: Number(body.stock),
+        imgS3Key: `images/${originalName}`,
+        imgS3Url: `https://jalab09.s3.amazonaws.com/images/${originalName}`
       }
     });
 

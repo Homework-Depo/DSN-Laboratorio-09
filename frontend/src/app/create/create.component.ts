@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductService } from '../service/product.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -15,8 +14,7 @@ export class CreateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private productService: ProductService,
-    private router: Router
+    private productService: ProductService
   ) {
     this.productForm = this.fb.group({
       name: '',
