@@ -1,4 +1,14 @@
 img {
-  height: 125px;
+  height: 120px;
   width: auto;
+}
+
+.texto {
+  font-size: 20px;
+}
+
+.center-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,50 +1,50 @@
 <table mat-table [dataSource]="products">
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> # </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    <th class="texto" mat-header-cell *matHeaderCellDef> # </th>
+    <td class="texto" mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
 
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Nombre </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <th class="texto" mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td class="texto" mat-cell *matCellDef="let element"> {{element.name}} </td>
   </ng-container>
 
   <ng-container matColumnDef="brand">
-    <th mat-header-cell *matHeaderCellDef> Marca </th>
-    <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+    <th class="texto" mat-header-cell *matHeaderCellDef> Marca </th>
+    <td class="texto" mat-cell *matCellDef="let element"> {{element.brand}} </td>
   </ng-container>
 
   <ng-container matColumnDef="model">
-    <th mat-header-cell *matHeaderCellDef> Modelo </th>
-    <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+    <th class="texto" mat-header-cell *matHeaderCellDef> Modelo </th>
+    <td class="texto" mat-cell *matCellDef="let element"> {{element.model}} </td>
   </ng-container>
 
   <ng-container matColumnDef="price">
-    <th mat-header-cell *matHeaderCellDef> Precio </th>
-    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    <th class="texto" mat-header-cell *matHeaderCellDef> Precio </th>
+    <td class="texto" mat-cell *matCellDef="let element"> {{element.price}} </td>
   </ng-container>
 
   <ng-container matColumnDef="stock">
-    <th mat-header-cell *matHeaderCellDef> Stock </th>
-    <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
+    <th class="texto" mat-header-cell *matHeaderCellDef> Stock </th>
+    <td class="texto" mat-cell *matCellDef="let element"> {{element.stock}} </td>
   </ng-container>
 
   <ng-container matColumnDef="img">
-    <th mat-header-cell *matHeaderCellDef> Imagen </th>
-    <td mat-cell *matCellDef="let element">
+    <th class="texto" mat-header-cell *matHeaderCellDef> Imagen </th>
+    <td class="texto" mat-cell *matCellDef="let element">
       <img [src]="element.imgS3Url">
     </td>
   </ng-container>
 
   <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>
+    <th class="texto" mat-header-cell *matHeaderCellDef>
       <button mat-icon-button color="primary" (click)="createLink.click()">
         <a routerLink="/create" #createLink></a>
         <mat-icon>add</mat-icon>
       </button>
     </th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-fab color="primary" aria-label="Editar este producto" routerLink="/edit" routerLink="/edit/{{element.id}}">
+    <td class="texto" mat-cell *matCellDef="let element">
+      <button class="center-button" mat-fab color="primary" aria-label="Editar este producto" routerLink="/edit" routerLink="/edit/{{element.id}}">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-fab color="warn" aria-label="Eliminar este producto" (click)="submitForDeletion(element.id, element.imgS3Key)">
