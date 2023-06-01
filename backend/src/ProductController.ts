@@ -5,9 +5,9 @@ import { uploadFile, deleteFile } from './AWSController';
 
 export const createProduct = async (req: Request, res: Response) => {
   const { body, file } = req;
-  const buffer = file?.buffer
-  const originalName: string = file?.originalname || ''
-  const mimeType: string = file?.mimetype || ''
+  const buffer = file?.buffer;
+  const originalName: string = file?.originalname || '';
+  const mimeType: string = file?.mimetype || '';
 
   try {
     await uploadFile(buffer, originalName, mimeType);
@@ -31,9 +31,9 @@ export const createProduct = async (req: Request, res: Response) => {
 
 export const updateProduct = async (req: Request, res: Response) => {
   const { params, body, file } = req;
-  const buffer = file?.buffer
-  const originalName: string = file?.originalname || ''
-  const mimeType: string = file?.mimetype || ''
+  const buffer = file?.buffer;
+  const originalName: string = file?.originalname || '';
+  const mimeType: string = file?.mimetype || '';
 
   try {
     const deleteResult = await deleteFile(body.imgS3Key);
@@ -59,7 +59,7 @@ export const updateProduct = async (req: Request, res: Response) => {
 
 export const deleteProduct = async (req: Request, res: Response) => {
   const { params } = req;
-  const { body } = req
+  const { body } = req;
 
   try {
     const deleteResult = await deleteFile(body.imgS3Key);

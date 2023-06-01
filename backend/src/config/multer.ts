@@ -12,6 +12,6 @@ import path from 'path';
   }
 }); */
 
-const storage = Multer.memoryStorage()
+const storage = Multer.memoryStorage();
 
 export const upload = Multer({ storage: storage });
